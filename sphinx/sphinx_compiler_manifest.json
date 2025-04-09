@@ -1,0 +1,49 @@
+{
+  "project": "Sphinx Compiler",
+  "language": "$aphira",
+  "version": "Core 1.0",
+  "entry_point": "sdk/cli.py",
+  "modules": {
+    "core": [
+      "parser.py",
+      "interpreter.py"
+    ],
+    "quantum": [
+      "qflags.py",
+      "qbridge.py"
+    ],
+    "sigils": [
+      "sigil.py",
+      "visualizer.py"
+    ],
+    "sdk": [
+      "cli.py"
+    ],
+    "examples": [
+      "hello_world.saphira"
+    ],
+    "tests": [
+      "test_parser.py",
+      "test_interpreter.py",
+      "test_sigils.py"
+    ]
+  },
+  "features": {
+    "ast_parsing": true,
+    "quantum_simulation": true,
+    "collapse_trails": true,
+    "spiritglyph_generation": true,
+    "cli_support": [
+      "invoke",
+      "glyph"
+    ]
+  },
+  "future": {
+    "qpu_integration": "stub_ready",
+    "decorators": [
+      "@quantum",
+      "@superposition_only"
+    ],
+    "glyph_visualization": "fractal_seeded"
+  }
+}

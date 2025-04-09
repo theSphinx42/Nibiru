@@ -1,0 +1,45 @@
+Claude, let’s architect a platform called “Nibiru” — a mythically branded digital marketplace for quantum and AI developers. The platform is a hybrid of GitHub, Gumroad, and an App Store, designed to host, license, and distribute advanced code. Please outline the system architecture and generate the first version of the backend using FastAPI and PostgreSQL.
+
+Platform Goals:
+
+Allow developers to upload and sell completed code, frameworks, or reusable libraries.
+
+Provide options for public, private, or encrypted listings.
+
+Offer license gating via “Invocation Keys” — digital license keys styled as mystical artifacts (each unlocks access to the purchased code).
+
+Include creator profiles, file/documentation previews, and category filters (e.g., Qiskit, Silq, hybrid quantum-classical models).
+
+Integrate Stripe for payments (one-time or subscription).
+
+Optional: build hooks for blockchain-based license tracking or resale prevention.
+
+MVP Stack:
+
+Frontend: Next.js (or React with Tailwind)
+
+Backend: FastAPI
+
+Database: PostgreSQL
+
+File storage: S3-compatible
+
+Payments: Stripe (supporting digital product sales)
+
+Please do the following:
+
+Draft the full system architecture (components, data flow, user roles)
+
+Generate backend code in FastAPI to support:
+
+User registration/login (JWT-based)
+
+Code listing creation (title, description, file upload, price, tags)
+
+License key generation and download access control
+
+Stripe payment integration with webhook handling
+
+Output database models (SQLAlchemy) for Users, Listings, Keys, and Transactions
+
+Suggest future extensions for smart contracts or AI-powered code previews

@@ -1,0 +1,42 @@
+nibiru-temp/
+├── .env
+├── .npmrc
+├── Dockerfile
+├── COMPLETESTRUCTRE1a.txt
+├── app/
+├── components/
+├── db.py
+├── image.py
+├── main.py
+├── package.json
+├── postcss.config.js
+├── requirements.txt
+├── scripts/
+│   ├── app/
+│   │   ├── backend/
+│   │   └── frontend/
+│   │       ├── .next/
+│   │       ├── components/
+│   │       ├── contexts/
+│   │       ├── hooks/
+│   │       ├── lib/
+│   │       ├── middleware.ts
+│   │       ├── next.config.js
+│   │       ├── next-env.d.ts
+│   │       ├── node_modules/
+│   │       ├── package.json
+│   │       ├── package-lock.json
+│   │       ├── pages/
+│   │       ├── postcss.config.js
+│   │       ├── services/
+│   │       ├── styles/
+│   │       ├── tailwind.config.js
+│   │       ├── tsconfig.json
+│   │       ├── types/
+│   │       └── utils/
+│   ├── dev.bat
+│   └── docker-compose.yml
+├── tailwind.config.js
+├── tsconfig.json
+├── utils/
+└── utils.py 

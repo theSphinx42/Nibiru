@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+watchgod
+redis[async]
+pillow
