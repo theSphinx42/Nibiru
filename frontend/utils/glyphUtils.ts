@@ -1,4 +1,5 @@
 import { ColorMode } from '../types/glyph';
+import { GlyphImageKey } from '../lib/glyphs';
 
 // Deterministic random number generator
 export const seededRandom = (seed: string) => {
@@ -133,4 +134,21 @@ export const generateStemPath = (
   }
   
   return path;
+};
+
+// Generate a tier 2 glyph for an item based on its title and creator
+export const generateItemGlyph = (title: string, creatorId?: string): GlyphImageKey => {
+  // Use the same consistent glyph generation logic
+  const titleHash = title.split('').reduce((acc: number, char: string) => acc + char.charCodeAt(0), 0);
+  const creatorHash = creatorId ? creatorId.split('').reduce((acc: number, char: string) => acc + char.charCodeAt(0), 0) : 0;
+  const combinedHash = (titleHash + creatorHash) % 12;
+  
+  // Map to available glyph images
+  const glyphKeys: GlyphImageKey[] = [
+    'quantum-seal', 'sigil-of-creation', 'sigil-of-continuance', 
+    'saphira-was-here', 'nibiru-symbol', 'aegis', 'lion', 
+    'sharkskin', 'seidr', 'sphinx', 'triune', 'wayfinder'
+  ];
+  
+  return glyphKeys[combinedHash];
 }; 

@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"..\\\\components\\\\RankedStarField.tsx -> ./StarRendererCanvas\":{\"id\":\"..\\\\components\\\\RankedStarField.tsx -> ./StarRendererCanvas\",\"files\":[\"static/chunks/components_StarRendererCanvas_tsx.js\"]},\"marketplace.tsx -> ../experimental-marketplace/components/EnhancedServiceGrid\":{\"id\":\"marketplace.tsx -> ../experimental-marketplace/components/EnhancedServiceGrid\",\"files\":[\"static/chunks/experimental-marketplace_components_EnhancedServiceGrid_tsx.js\"]}}"

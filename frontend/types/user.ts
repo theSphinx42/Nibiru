@@ -2,22 +2,40 @@ export type UserRole = 'USER' | 'ADMIN' | 'MODERATOR';
 
 export interface User {
   id: string;
-  username: string;
   email: string;
-  displayName?: string;
+  username: string;
+  displayName: string;
   role: UserRole;
   quantumScore: number;
   spiritGlyphTier: number;
-  profileImage?: string;
+  profileImage: string;
+  createdAt: string;
+  updatedAt: string;
   bio?: string;
   website?: string;
   twitter?: string;
   github?: string;
-  createdAt: string;
-  updatedAt: string;
+  services_published: number;
+  total_downloads: number;
+  average_rating: number;
+  weekly_stats: {
+    views: number;
+    interactions: number;
+  };
+  monthly_stats: {
+    views: number;
+    interactions: number;
+  };
+  followers: string[];
+  following: string[];
+  followerCount: number;
+  hasPaidOnboardingFee: boolean;
+  isNewsletterSubscriber: boolean;
+  unlockedPremiumAccess: {
+    galatea: boolean;
+  };
   
   // Stats
-  services_published?: number;
   total_downloads?: number;
   average_rating?: number;
   weekly_stats?: {
@@ -33,13 +51,10 @@ export interface User {
   user_engagement?: number;
   
   // Social fields
-  followers?: string[]; // Array of user IDs who follow this user
   following?: string[]; // Array of user IDs this user follows
-  followerCount?: number; // Number of followers
   
   // Monetization fields
   stripeCustomerId?: string;
-  hasPaidOnboardingFee: boolean;
   isNewsletterSubscriber: boolean;
   unlockedPremiumAccess: {
     [key: string]: boolean;

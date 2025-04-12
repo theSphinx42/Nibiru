@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import UserProfile from '../components/UserProfile';
 import ServiceListing from '../components/ServiceListing';
 import QuantumBreakdown from '../components/QuantumBreakdown';
+import RankedStarField from '../components/RankedStarField';
 import { useToast } from '../components/Toast';
 import { withAuth } from '../components/withAuth';
 import { Service } from '../types';
@@ -18,6 +19,25 @@ const ProfilePage = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { showToast } = useToast();
+
+  // Calculate user rank based on quantum score and other metrics
+  const calculateRank = (user: User | null) => {
+    if (!user) return 0;
+    const baseRank = Math.floor(user.quantumScore / 10);
+    const serviceBonus = (user.services_published || 0) * 5;
+    const downloadBonus = Math.floor((user.total_downloads || 0) / 100);
+    return baseRank + serviceBonus + downloadBonus;
+  };
+
+  // Check if user is a top contributor
+  const isTopContributor = (user: User | null) => {
+    if (!user) return false;
+    return (
+      (user.quantumScore >= 90) ||
+      (user.services_published >= 5) ||
+      (user.total_downloads >= 1000)
+    );
+  };
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -126,6 +146,11 @@ const ProfilePage = () => {
 
   return (
     <Layout>
+      <RankedStarField
+        rank={calculateRank(authUser)}
+        score={authUser?.quantumScore || 0}
+        isTopContributor={isTopContributor(authUser)}
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

@@ -1,0 +1,11 @@
+{
+  "patches": {
+    "nextWatchpackFix": {
+      "applied": true,
+      "timestamp": "2025-04-09T11:29:54.434Z",
+      "version": "14.0.4",
+      "method": "global-path-patch",
+      "status": "applied"
+    }
+  }
+}

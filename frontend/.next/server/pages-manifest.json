@@ -2,6 +2,12 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/404": "pages/404.js",
   "/marketplace": "pages/marketplace.js",
-  "/api/music/tracks": "pages/api/music/tracks.js"
+  "/api/music/tracks": "pages/api/music/tracks.js",
+  "/dashboard": "pages/dashboard.js",
+  "/login": "pages/login.js",
+  "/dashboard/my-items": "pages/dashboard/my-items.js",
+  "/api/listings/me": "pages/api/listings/me.js",
+  "/profile": "pages/profile.js"
 }

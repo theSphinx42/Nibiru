@@ -1,0 +1,19 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="16" fill="#10B981" opacity="0.1"/>
+  <g transform="translate(64, 64) scale(0.5)">
+    <!-- Chart base -->
+    <rect x="32" y="200" width="192" height="16" rx="4" fill="#10B981"/>
+    <!-- Bar chart elements -->
+    <rect x="48" y="120" width="32" height="80" rx="4" fill="#10B981"/>
+    <rect x="96" y="80" width="32" height="120" rx="4" fill="#10B981"/>
+    <rect x="144" y="144" width="32" height="56" rx="4" fill="#10B981"/>
+    <rect x="192" y="48" width="32" height="152" rx="4" fill="#10B981"/>
+    <!-- Line chart element -->
+    <path d="M32 64C32 64 60.4 112 96 96C131.6 80 144 128 168 128C192 128 224 32 224 32" 
+          stroke="#10B981" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Data points -->
+    <circle cx="96" cy="96" r="8" fill="#10B981"/>
+    <circle cx="168" cy="128" r="8" fill="#10B981"/>
+  </g>
+  <text x="128" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#10B981">DATA VIZ</text>
+</svg> 

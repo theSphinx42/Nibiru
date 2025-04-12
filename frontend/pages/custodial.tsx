@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
-import GlyphBackground from '../components/GlyphBackground';
+import GlyphBackground from '../components/canvas-extras/GlyphBackground';
 import ThematicGlyph from '../components/ThematicGlyph';
 
 const CustodialProtocol = () => {

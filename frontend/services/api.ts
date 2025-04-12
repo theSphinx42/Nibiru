@@ -314,6 +314,57 @@ export const getMetrics = async (userId: string): Promise<Metrics> => {
   }
 };
 
+// Track user activity with fact checking tool and award quantum points
+export const trackFactCheckUsage = async (userId: string, contentType: 'url' | 'text'): Promise<{ success: boolean, pointsAwarded: number }> => {
+  try {
+    // In a production environment, make an API call
+    const response = await api.post('/user/activity/fact-check', {
+      userId,
+      contentType,
+      timestamp: new Date().toISOString()
+    });
+    
+    return response.data;
+  } catch (error) {
+    console.error('Error tracking fact check usage:', error);
+    
+    // In development, use mock implementation
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Using mock implementation for fact check tracking');
+      
+      // Update user quantum score in localStorage
+      try {
+        const userStr = localStorage.getItem('user');
+        if (userStr) {
+          const user = JSON.parse(userStr);
+          
+          // Only award points if the user has Galatea access
+          if (user.unlockedPremiumAccess?.galatea) {
+            // Increment quantum score
+            const pointsAwarded = 5;
+            user.quantumScore = (user.quantumScore || 0) + pointsAwarded;
+            
+            // Save updated user data
+            localStorage.setItem('user', JSON.stringify(user));
+            
+            console.log(`Awarded ${pointsAwarded} quantum points to user ${userId} for fact checking`);
+            
+            return { 
+              success: true, 
+              pointsAwarded
+            };
+          }
+        }
+      } catch (localStorageError) {
+        console.error('Error updating local storage:', localStorageError);
+      }
+    }
+    
+    // Return fallback
+    return { success: false, pointsAwarded: 0 };
+  }
+};
+
 // Enhanced glyph service
 export const apiService = {
   generateGlyphSeed: async (): Promise<GlyphResponse> => {

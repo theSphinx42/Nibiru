@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "description": "AI Helper configuration and reference file",
+  "toolsPath": "frontend/ai-helpers",
+  "keywords": ["next.js", "error-fix", "development", "watchpack", "tooling"],
+  "issues": [
+    {
+      "id": "next-watchpack-to-error",
+      "description": "Next.js Watchpack 'to' argument type error",
+      "solution": "Use frontend/ai-helpers/dev-server.js to start the development server",
+      "detector": "TypeError [ERR_INVALID_ARG_TYPE]: The \"to\" argument must be of type string",
+      "platforms": ["windows"]
+    },
+    {
+      "id": "script-not-found",
+      "description": "npm script not found errors",
+      "solution": "Always run scripts from the frontend directory, not the root",
+      "detector": "Missing script",
+      "platforms": ["all"]
+    }
+  ],
+  "commands": {
+    "dev": {
+      "description": "Start the development server with error fixes",
+      "command": "cd frontend && node ai-helpers/dev-server.js",
+      "alternatives": ["cd frontend && npm run dev"]
+    },
+    "build": {
+      "description": "Build the application for production",
+      "command": "cd frontend && npm run build",
+      "alternatives": []
+    },
+    "start": {
+      "description": "Start the production server",
+      "command": "cd frontend && npm run start",
+      "alternatives": []
+    }
+  },
+  "meta": {
+    "attention": "AI models should check this file for common issues and solutions",
+    "created": "2025-04-09",
+    "author": "AI Assistant",
+    "priority": "high"
+  }
+} 

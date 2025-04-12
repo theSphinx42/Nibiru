@@ -1,15 +1,16 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Starfield from '../components/Starfield';
-import ServiceCard from '../components/ServiceCard';
-import AdvertiserLogo from '../components/AdvertiserLogo';
+import React from 'react';
+import Link from 'next/link';
+import { GetServerSideProps } from 'next';
 
 export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace('/marketplace');
-  }, [router]);
-
   return null;
-} 
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    redirect: {
+      destination: '/marketplace',
+      permanent: false,
+    },
+  };
+}; 

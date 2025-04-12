@@ -35,6 +35,31 @@ export const mockUser: User = {
 
 export const mockServices = [
   {
+    id: 1,
+    title: "Nibiru DevControl",
+    description: "Advanced development toolkit for Nibiru platform integration. Includes quantum-aware debugging, glyph manipulation APIs, and automated deployment tools.",
+    price: 299.99,
+    rating: 4.9,
+    downloads: 1247,
+    category: "Developer Tools",
+    tags: ["development", "quantum", "api", "tools"],
+    thumbnailUrl: "/images/devcontrol-preview.png",
+    image: "/images/devcontrol-preview.png",
+    quantumTier: 3,
+    tier: "premium",
+    features: [
+      "Quantum-aware debugging interface",
+      "Glyph manipulation API access",
+      "Automated deployment tools",
+      "Advanced metrics and analytics",
+      "Priority support channel access"
+    ],
+    authorId: "nibiru-core",
+    file_path: "devcontrol/v1.0.0/release.zip",
+    quantum_score: 95,
+    s3_file_key: "devcontrol-v1.0.0"
+  },
+  {
     id: '1',
     title: 'Quantum Pattern Analysis',
     description: 'Advanced pattern recognition using quantum algorithms',

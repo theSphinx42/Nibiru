@@ -328,8 +328,8 @@ const Dashboard = () => {
           </div>
 
           {/* Monthly Overview */}
-          <div className="bg-gray-800/30 rounded-xl p-6 backdrop-blur-sm
-                        border border-gray-700/30 relative overflow-hidden hover:bg-gray-800/40 hover:border-gray-600/40 transition-colors duration-300 cursor-pointer">
+     <div className="bg-gray-800/30 rounded-xl p-6 backdrop-blur-sm border border-gray-700/30 relative overflow-hidden hover:bg-gray-800/40 hover:border-gray-600/40 transition-colors duration-300 cursor-pointer">
+
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/10 rounded-full filter blur-xl opacity-50 -mr-10 -mt-10"></div>
             <h3 className="text-lg font-medium text-gray-300 mb-4 flex items-center">
               <span className="mr-2 w-2 h-2 bg-purple-400 rounded-full"></span>

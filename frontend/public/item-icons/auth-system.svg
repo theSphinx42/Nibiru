@@ -1,0 +1,8 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="16" fill="#2563EB" opacity="0.1"/>
+  <g transform="translate(64, 64) scale(0.5)">
+    <path d="M128 32C89.3 32 58.7 62.6 58.7 101.3V144H48C39.2 144 32 151.2 32 160V240C32 248.8 39.2 256 48 256H208C216.8 256 224 248.8 224 240V160C224 151.2 216.8 144 208 144H197.3V101.3C197.3 62.6 166.7 32 128 32ZM165.3 144H90.7V101.3C90.7 80.2 107.5 64 128 64C148.5 64 165.3 80.2 165.3 101.3V144Z" fill="#2563EB"/>
+    <circle cx="128" cy="192" r="24" fill="#2563EB"/>
+  </g>
+  <text x="128" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2563EB">AUTH SYSTEM</text>
+</svg> 

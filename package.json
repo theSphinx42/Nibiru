@@ -1,6 +1,20 @@
 {
+  "name": "saphira-q",
+  "version": "1.0.0",
+  "description": "Saphira Q project with Nibiru frontend",
+  "scripts": {
+    "dev": "cd frontend && npm run dev:fix",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm run start",
+    "safe-dev": "cd frontend && npm run safe-dev",
+    "patch:next": "cd frontend && npm run patch:next",
+    "clean": "cd frontend && npm run clean"
+  },
   "dependencies": {
     "@types/qrcode": "^1.5.5",
     "qrcode": "^1.5.4"
+  },
+  "engines": {
+    "node": ">=18.17.0"
   }
 }

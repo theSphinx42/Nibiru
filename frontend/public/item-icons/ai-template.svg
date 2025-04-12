@@ -1,0 +1,14 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="16" fill="#7C3AED" opacity="0.1"/>
+  <g transform="translate(64, 64) scale(0.5)">
+    <!-- Brain icon -->
+    <path d="M208 80C208 53.5 186.5 32 160 32C147.7 32 136.5 36.8 128 44.8C119.5 36.8 108.3 32 96 32C69.5 32 48 53.5 48 80C48 89.3 50.8 97.9 55.5 105C44 113.2 36 126.5 36 142C36 161 47.4 177.3 64 185.5C64 186.3 64 187.2 64 188C64 211.2 82.8 230 106 230H144C167.2 230 186 211.2 186 188C186 187.2 186 186.3 186 185.5C202.6 177.3 214 161 214 142C214 126.5 206 113.2 194.5 105C199.2 97.9 202 89.3 202 80H208ZM144 198C144 202.4 148.4 206 152.8 206C157.2 206 160.8 202.4 160.8 198C160.8 193.6 157.2 190 152.8 190C148.4 190 144 193.6 144 198ZM100.8 190C96.4 190 92.8 193.6 92.8 198C92.8 202.4 96.4 206 100.8 206C105.2 206 108.8 202.4 108.8 198C108.8 193.6 105.2 190 100.8 190ZM120 162C120 166.4 123.6 170 128 170C132.4 170 136 166.4 136 162C136 157.6 132.4 154 128 154C123.6 154 120 157.6 120 162Z" fill="#7C3AED"/>
+    <!-- Circuit connections -->
+    <path d="M120 162H80" stroke="#7C3AED" stroke-width="6" stroke-linecap="round"/>
+    <path d="M136 162H176" stroke="#7C3AED" stroke-width="6" stroke-linecap="round"/>
+    <path d="M128 154V114" stroke="#7C3AED" stroke-width="6" stroke-linecap="round"/>
+    <path d="M100.8 190L80 170" stroke="#7C3AED" stroke-width="6" stroke-linecap="round"/>
+    <path d="M152.8 190L176 170" stroke="#7C3AED" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <text x="128" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#7C3AED">AI TEMPLATE</text>
+</svg> 

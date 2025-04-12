@@ -1,3 +1,11 @@
+/**
+ * DEPRECATED
+ * 
+ * This Starfield implementation is deprecated and will be removed in a future update.
+ * Please use RankedStarField.tsx for main dynamic starfield or
+ * StarfieldLoginBG.tsx for authentication pages.
+ */
+
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 

@@ -8,8 +8,12 @@
   ],
   "routes": [
     {
+      "src": "/marketplace/(.*)",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/marketplace/$1"
     }
   ],
   "env": {

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
-import { FiEdit } from 'react-icons/fi';
+import { FiEdit, FiCheck } from 'react-icons/fi';
 
 const Header = () => {
   const router = useRouter();
@@ -26,6 +26,14 @@ const Header = () => {
                        text-gray-300 hover:text-white hover:bg-gray-700"
             >
               Marketplace
+            </button>
+            <button
+              onClick={() => router.push('/fact-check')}
+              className="px-3 py-2 rounded-md text-sm font-medium 
+                       text-gray-300 hover:text-white hover:bg-teal-800 flex items-center"
+            >
+              <FiCheck className="mr-1" />
+              FactCheck
             </button>
             <button
               onClick={() => router.push('/listings/galatea')}

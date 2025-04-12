@@ -6,6 +6,7 @@ import { galateaService } from '../services/galatea';
 import { GalateaAccessModal } from './GalateaAccessModal';
 import ThematicGlyph, { GlyphTier, GlyphRank, GlyphEffect } from './ThematicGlyph';
 import { toast } from 'react-hot-toast';
+import { generateItemGlyph } from '../utils/glyphUtils';
 
 interface ListingFormData {
   title: string;
@@ -13,7 +14,7 @@ interface ListingFormData {
   price: string;
   category: string;
   isGalatea: boolean;
-  glyphRank: GlyphRank;
+  glyphImage: string;  // Store the generated glyph image
   galateaTier?: number;
 }
 
@@ -32,7 +33,7 @@ export const CreateListingForm: React.FC<CreateListingFormProps> = ({
     description: initialData?.description || '',
     price: initialData?.price || '',
     category: initialData?.category || '',
-    glyphRank: (initialData?.glyphRank as GlyphRank) || 'basic',
+    glyphImage: '',  // Will be generated when title changes
     isGalatea: initialData?.isGalatea || false,
     galateaTier: initialData?.galateaTier
   });
@@ -40,6 +41,14 @@ export const CreateListingForm: React.FC<CreateListingFormProps> = ({
   const [isGalateaModalOpen, setIsGalateaModalOpen] = useState(false);
   const [hasGalateaAccess, setHasGalateaAccess] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Generate tier 2 glyph when title changes
+  useEffect(() => {
+    if (formData.title) {
+      const glyphImage = generateItemGlyph(formData.title, user?.id);
+      setFormData(prev => ({ ...prev, glyphImage }));
+    }
+  }, [formData.title, user?.id]);
 
   useEffect(() => {
     const checkGalateaAccess = async () => {
@@ -66,7 +75,6 @@ export const CreateListingForm: React.FC<CreateListingFormProps> = ({
       ...prev,
       category: newCategory,
       isGalatea,
-      glyphRank: isGalatea ? ('mythic' as const) : prev.glyphRank,
       galateaTier: isGalatea ? 1 : undefined
     }));
   };
@@ -139,29 +147,6 @@ export const CreateListingForm: React.FC<CreateListingFormProps> = ({
           </select>
         </div>
 
-        {/* Glyph Rank */}
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
-            Glyph Rank
-          </label>
-          <select
-            value={formData.glyphRank}
-            onChange={e => setFormData(prev => ({ ...prev, glyphRank: e.target.value as GlyphRank }))}
-            className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-            disabled={formData.isGalatea}
-          >
-            <option value="basic">Basic - Standard glyph with basic effects</option>
-            <option value="enhanced">Enhanced - Advanced glyph with particle effects</option>
-            <option value="premium">Premium - Advanced animations</option>
-            <option value="mythic">Mythic - Legendary glyph with unique effects</option>
-          </select>
-          {formData.isGalatea && (
-            <p className="mt-1 text-sm text-orange-400">
-              Galatea listings automatically use mythic-tier glyphs with special effects
-            </p>
-          )}
-        </div>
-
         {/* Description */}
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -219,10 +204,11 @@ export const CreateListingForm: React.FC<CreateListingFormProps> = ({
                 <div className="flex-shrink-0">
                   <ThematicGlyph
                     tier="item"
-                    rank={formData.glyphRank}
+                    rank="enhanced"  // Always tier 2 for items
                     size={48}
-                    effect={formData.isGalatea ? 'particles' : formData.glyphRank === 'mythic' ? 'pulse' : 'none'}
+                    effect={formData.isGalatea ? 'particles' : 'none'}
                     isGalatea={formData.isGalatea}
+                    glyph={formData.glyphImage}  // Use the generated glyph image
                   />
                 </div>
                 <div className="flex-1">

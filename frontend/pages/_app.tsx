@@ -5,11 +5,14 @@ import { useRouter } from 'next/router';
 import { AuthProvider } from '../contexts/AuthContext';
 import Layout from '../components/Layout';
 import { AnimatePresence } from 'framer-motion';
-import { ToastProvider } from '../components/Toast';
 import { DebugProvider } from '../contexts/DebugContext';
 import { CartProvider } from '../contexts/CartContext';
+import { SessionProvider } from 'next-auth/react';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function App({ 
+  Component, 
+  pageProps: { session, ...pageProps } 
+}: AppProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,16 +56,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, [router]);
 
   return (
-    <AuthProvider>
-      <CartProvider>
-        <ToastProvider>
+    <SessionProvider session={session}>
+      <AuthProvider>
+        <CartProvider>
           <DebugProvider>
             <AnimatePresence mode="wait">
               <Component {...pageProps} key={router.route} loading={isLoading} />
             </AnimatePresence>
           </DebugProvider>
-        </ToastProvider>
-      </CartProvider>
-    </AuthProvider>
+        </CartProvider>
+      </AuthProvider>
+    </SessionProvider>
   );
 } 

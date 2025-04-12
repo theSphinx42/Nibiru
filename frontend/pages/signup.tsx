@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
-import StarfieldBackground from '../components/StarfieldBackground';
+import StarfieldLoginBG from '../components/StarfieldLoginBG';
 import { useAuth } from '../contexts/AuthContext';
 import Link from 'next/link';
 
@@ -78,7 +78,7 @@ const SignupPage = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center">
-      <StarfieldBackground />
+      <StarfieldLoginBG />
       
       <AnimatePresence>
         {isFading && (

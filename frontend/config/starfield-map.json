@@ -1,0 +1,87 @@
+{
+  "routeMappings": [
+    {
+      "pattern": "/login",
+      "variant": "login",
+      "description": "Login Starfall - Authentication Pages"
+    },
+    {
+      "pattern": "/register",
+      "variant": "login",
+      "description": "Login Starfall - Authentication Pages"
+    },
+    {
+      "pattern": "/forgot-password",
+      "variant": "login",
+      "description": "Login Starfall - Authentication Pages"
+    },
+    {
+      "pattern": "/profile",
+      "variant": "main",
+      "description": "Main Dynamic Hyperspace - Profile area",
+      "glyphOverlay": {
+        "enabled": true,
+        "glyph": "sigil-of-creation",
+        "minUserRank": 10,
+        "effect": "glow",
+        "colorTheme": "cosmic"
+      }
+    },
+    {
+      "pattern": "/ranked",
+      "variant": "main",
+      "description": "Main Dynamic Hyperspace - Ranked area",
+      "glyphOverlay": {
+        "enabled": true,
+        "glyph": "sigil-of-continuance",
+        "minUserRank": 5,
+        "effect": "pulse",
+        "syncWithMusic": true
+      }
+    },
+    {
+      "pattern": "/dashboard",
+      "variant": "main",
+      "description": "Main Dynamic Hyperspace - Dashboard area",
+      "glyphOverlay": {
+        "enabled": true,
+        "glyph": "aegis",
+        "minUserRank": 0,
+        "effect": "fade",
+        "colorTheme": "quantum"
+      }
+    },
+    {
+      "pattern": "/experimental",
+      "variant": "experimental",
+      "description": "Experimental BoldGlyph Version - Archived (not mounted)"
+    }
+  ],
+  "defaultVariant": "main",
+  "variantDetails": {
+    "main": {
+      "component": "RankedStarField",
+      "features": ["dynamic hyperspace", "shooting stars", "supernova bursts"],
+      "recommended": "Profile and ranked areas"
+    },
+    "login": {
+      "component": "StarfieldLoginBG",
+      "features": ["falling stars", "subtle animation", "non-interactive"],
+      "recommended": "Authentication pages"
+    },
+    "experimental": {
+      "component": "StarfieldExperimental_BoldFloat",
+      "features": ["floating glyphs", "cosmic symbols", "bold visuals"],
+      "status": "archived",
+      "recommended": "Not recommended for production use"
+    }
+  },
+  "glyphOverlayDefaults": {
+    "enabled": false,
+    "size": 400,
+    "opacity": 0.1,
+    "effect": "fade",
+    "syncWithMusic": false,
+    "colorTheme": "default"
+  }
+} 

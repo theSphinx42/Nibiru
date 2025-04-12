@@ -11,6 +11,13 @@ import { useRouter } from 'next/router';
 import { FiSearch, FiFilter, FiStar } from 'react-icons/fi';
 import Image from 'next/image';
 
+// Import experimental components (used only when experimental mode is enabled)
+import dynamic from 'next/dynamic';
+const EnhancedServiceGrid = dynamic(() => import('../experimental-marketplace/components/EnhancedServiceGrid'), { 
+  ssr: false,
+  loading: () => <div className="w-full py-8"><LoadingSpinner /></div>
+});
+
 export default function Marketplace() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -19,6 +26,9 @@ export default function Marketplace() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  
+  // Check if experimental mode is enabled via query param
+  const isExperimentalMode = router.query.experimental === 'true';
 
   // Fetch services
   useEffect(() => {
@@ -60,6 +70,17 @@ export default function Marketplace() {
 
   const categories = Array.from(new Set(services.map(service => service.category)));
 
+  // Toggle experimental mode
+  const toggleExperimentalMode = () => {
+    const newUrl = new URL(window.location.href);
+    if (isExperimentalMode) {
+      newUrl.searchParams.delete('experimental');
+    } else {
+      newUrl.searchParams.set('experimental', 'true');
+    }
+    router.push(newUrl.pathname + newUrl.search);
+  };
+
   if (error) {
     return (
       <Layout title="Marketplace">
@@ -75,7 +96,19 @@ export default function Marketplace() {
   return (
     <Layout title="Marketplace - Nibiru">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-3xl font-bold text-gray-100 mb-8">Marketplace</h1>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-100">Marketplace</h1>
+          
+          {/* Dev-only experimental mode toggle */}
+          {process.env.NODE_ENV === 'development' && (
+            <button
+              onClick={toggleExperimentalMode}
+              className="mt-3 sm:mt-0 px-3 py-1 text-xs rounded bg-purple-800 hover:bg-purple-700 transition-colors"
+            >
+              {isExperimentalMode ? 'Disable Experimental UI' : 'Enable Experimental UI'}
+            </button>
+          )}
+        </div>
         
         {/* Featured Item - Galatea Project */}
         <div className="mb-12 relative overflow-hidden rounded-2xl">
@@ -144,48 +177,75 @@ export default function Marketplace() {
           </div>
         </div>
 
-        {/* Service Grid */}
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <SkeletonCard key={i} />
-            ))}
-          </div>
+        {/* Conditional rendering based on experimental mode */}
+        {isExperimentalMode ? (
+          // Experimental enhanced service grid
+          <EnhancedServiceGrid 
+            services={filteredServices.map(service => ({
+              id: service.id.toString(),
+              name: service.title,
+              description: service.description,
+              short_description: service.description.substring(0, 120) + '...',
+              price: service.price,
+              category: service.category,
+              downloads: service.downloads,
+              rating: service.rating,
+              quantumTier: service.quantumTier || 0,
+              tags: service.tags
+            }))}
+            isLoading={isLoading}
+            error={error}
+            layout="standard"
+            showTags={true}
+            featuredItem={services.length > 0 ? services[0].id.toString() : undefined}
+            onItemClick={(id) => router.push(`/listings/${id}`)}
+          />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatePresence>
-              {filteredServices.map((service) => (
-                <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ServiceCard
-                    service={{
-                      id: service.id.toString(),
-                      name: service.title,
-                      description: service.description,
-                      price: service.price,
-                      category: service.category,
-                      downloads: service.downloads,
-                      rating: service.rating,
-                      quantumTier: service.quantumTier || 0
-                    }}
-                    onClick={() => router.push(`/listings/${service.id}`)}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        )}
+          // Standard service grid
+          <>
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <SkeletonCard key={i} />
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <AnimatePresence>
+                  {filteredServices.map((service) => (
+                    <motion.div
+                      key={service.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ServiceCard
+                        service={{
+                          id: service.id.toString(),
+                          name: service.title,
+                          description: service.description,
+                          price: service.price,
+                          category: service.category,
+                          downloads: service.downloads,
+                          rating: service.rating,
+                          quantumTier: service.quantumTier || 0
+                        }}
+                        onClick={() => router.push(`/listings/${service.id}`)}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            )}
 
-        {/* Empty State */}
-        {!isLoading && filteredServices.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-400">No services found matching your criteria</p>
-          </div>
+            {/* Empty State */}
+            {!isLoading && filteredServices.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-400">No services found matching your criteria</p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </Layout>

@@ -1,0 +1,28 @@
+{
+  "id": "helper-id",
+  "name": "Helper Name",
+  "version": "1.0.0",
+  "description": "Description of what this helper fixes or addresses",
+  "errorPatterns": [
+    "Error message pattern 1",
+    "Error message pattern 2"
+  ],
+  "platforms": ["win32", "darwin", "linux"],
+  "frameworks": ["framework-name"],
+  "versions": ["version-range"],
+  "scripts": {
+    "fix": "scripts/path-to-fix-script.js",
+    "directFix": "scripts/path-to-direct-fix.js",
+    "startServer": "scripts/path-to-start-server.js"
+  },
+  "commands": {
+    "powershell": "PowerShell command to execute fix",
+    "cmd": "Command prompt command to execute fix",
+    "bash": "Bash command to execute fix"
+  },
+  "targetFiles": [
+    "path/to/file/that/needs/patching.js"
+  ],
+  "patchType": "nullCheck/replacement/hook/injection/etc",
+  "documentation": "path/to/documentation.md"
+} 

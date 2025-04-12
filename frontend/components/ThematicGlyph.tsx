@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import { glyphImages } from '../lib/glyphs';
+import { glyphImages, FALLBACK_GLYPH } from '../lib/glyphs';
 
 // Glyph = singular tier token (user, item, or system level)
 export type GlyphTier = 'user' | 'item' | 'system';
@@ -597,6 +597,12 @@ const ThematicGlyph: React.FC<ThematicGlyphProps> = ({
             width={size}
             height={size}
             className={getEffectStyles(tier, effect, isGalatea)}
+            loading="eager"
+            priority={true}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = FALLBACK_GLYPH;
+            }}
           />
           {transitioning && particles.length > 0 && (
             <div 

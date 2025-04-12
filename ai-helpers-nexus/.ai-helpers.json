@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "rootLock": true,
+  "portRequired": 3000,
+  "errorFixes": [
+    {
+      "id": "nextjs-to-arg-type",
+      "script": "scripts/next-watchpack-fix.js",
+      "status": "active",
+      "appliesTo": ["next@14.x", "next@15.x"],
+      "trigger": "TypeError [ERR_INVALID_ARG_TYPE]: The \"to\" argument must be of type string"
+    }
+  ],
+  "preDev": [
+    {
+      "id": "detect-route-conflicts",
+      "script": "scripts/detect-route-conflicts.js",
+      "description": "Scans for duplicate route definitions",
+      "stopOnError": false
+    }
+  ],
+  "scripts": {
+    "dev": "scripts/start-fixed-server.js",
+    "clean": "scripts/direct-fix.js",
+    "check-routes": "scripts/detect-route-conflicts.js"
+  },
+  "aiRoles": {
+    "Sphinx": "Architect, moral alignment, macro vision",
+    "Claude": "Executor, systems builder, file sync",
+    "Cursor": "Local mutation agent, sandbox ops"
+  }
+} 

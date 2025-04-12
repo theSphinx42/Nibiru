@@ -1,6 +1,13 @@
+/**
+ * GlyphBackground Component
+ * 
+ * This component will be moved to canvas-extras/ directory in a future organization update.
+ */
+
 import { motion } from 'framer-motion';
 import GlyphViewer from './GlyphViewer';
 import { GlyphName, GlyphEffect } from './ThematicGlyph';
+import { useEffect, useRef } from 'react';
 
 interface GlyphBackgroundProps {
   glyph: GlyphName;
@@ -9,6 +16,10 @@ interface GlyphBackgroundProps {
   className?: string;
   effect?: 'glow' | 'orbit' | 'pulse' | 'fade';
   description?: string;
+  syncWithMusic?: boolean;
+  colorTheme?: string;
+  isActive?: boolean;
+  userRank?: number;
 }
 
 const GlyphBackground: React.FC<GlyphBackgroundProps> = ({
@@ -17,7 +28,11 @@ const GlyphBackground: React.FC<GlyphBackgroundProps> = ({
   opacity = 0.1,
   className = '',
   effect = 'fade',
-  description
+  description,
+  syncWithMusic = false,
+  colorTheme,
+  isActive = true,
+  userRank
 }) => {
   // Convert the effect to a valid GlyphEffect type
   const getGlyphEffect = (): GlyphEffect => {
@@ -42,6 +57,8 @@ const GlyphBackground: React.FC<GlyphBackgroundProps> = ({
         description={description}
         effect={getGlyphEffect()}
         isAnimated={effect !== 'fade'}
+        colorTheme={colorTheme}
+        syncWithMusic={syncWithMusic}
       />
     </motion.div>
   );

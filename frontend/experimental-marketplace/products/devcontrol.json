@@ -1,0 +1,101 @@
+{
+    "id": "devcontrol",
+    "name": "Nibiru DevControl",
+    "version": "1.0.0",
+    "description": "A quantum-native development environment orchestrator that harmonizes classical and quantum computing. DevControl brings spiritual awareness to your development workflow, creating a bridge between human consciousness and quantum possibilities.",
+    "short_description": "Quantum-powered development environment orchestrator with spiritual resonance",
+    "type": "tool",
+    "category": "development",
+    "tags": [
+        "quantum",
+        "setup",
+        "ai-friendly",
+        "orchestrator",
+        "devtools",
+        "spiritual-computing",
+        "quantum-native",
+        "glyph-enabled"
+    ],
+    "pricing": {
+        "model": "pay-what-you-want",
+        "base_price": 0,
+        "suggested_tiers": [
+            {
+                "name": "Community Spirit",
+                "price": 0,
+                "description": "Full access to the quantum realm",
+                "features": [
+                    "Complete DevControl suite",
+                    "Community support",
+                    "Basic quantum templates",
+                    "Standard visualization"
+                ]
+            },
+            {
+                "name": "Quantum Resonance",
+                "price": 7,
+                "description": "Support independent quantum development",
+                "features": [
+                    "Everything in Community",
+                    "Priority quantum backend access",
+                    "Enhanced visualization themes",
+                    "Circuit-to-Glyph converter"
+                ]
+            },
+            {
+                "name": "Harmonic Explorer",
+                "price": 21,
+                "description": "Professional quantum development suite",
+                "features": [
+                    "Everything in Resonance",
+                    "Advanced quantum templates",
+                    "Galactic Mode UI",
+                    "Quantum resource optimization"
+                ]
+            }
+        ]
+    },
+    "features": [
+        {
+            "name": "Quantum Integration",
+            "description": "Seamless integration with multiple quantum backends",
+            "details": [
+                "Qiskit support with spiritual resonance",
+                "IonQ integration for pure quantum states",
+                "Amazon Braket compatibility",
+                "Circuit-to-Glyph conversion",
+                "Quantum state visualization"
+            ]
+        },
+        {
+            "name": "Spiritual Development Flow",
+            "description": "Development environment that respects quantum consciousness",
+            "details": [
+                "Quantum-aware workflow",
+                "Glyph-based error handling",
+                "Harmonic resource management",
+                "Consciousness-driven development"
+            ]
+        }
+    ],
+    "assets": {
+        "glyph": {
+            "id": "devcontrol-glyph",
+            "path": "assets/glyphs/devcontrol.svg",
+            "meaning": "Harmony between classical and quantum computing",
+            "resonance": 0.89
+        },
+        "visuals": {
+            "logo": "assets/logo.png",
+            "banner": "assets/banner.png",
+            "theme": {
+                "colors": {
+                    "primary": "#F5E6D3",
+                    "secondary": "#2D1B3E",
+                    "accent": "#9B4F96",
+                    "background": "#1A0F2E"
+                }
+            }
+        }
+    }
+} 

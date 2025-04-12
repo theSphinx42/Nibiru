@@ -1,3 +1,11 @@
+/**
+ * DEPRECATED
+ * 
+ * This StarfieldBackground implementation is deprecated and will be removed in a future update.
+ * Please use StarfieldLoginBG.tsx for authentication pages which implements a cleaner version
+ * of the falling star effect.
+ */
+
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 

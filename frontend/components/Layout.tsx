@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import Footer from './Footer';
-import Starfield from './Starfield';
+import StarfieldWrapper from './StarfieldWrapper';
 import QuantumScore from './QuantumScore';
 import { useAuth } from '../contexts/AuthContext';
 import Link from 'next/link';
@@ -21,6 +21,7 @@ interface LayoutProps {
   className?: string;
   loading?: boolean;
   loadingText?: string;
+  userRank?: number;
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -31,6 +32,7 @@ const Layout: React.FC<LayoutProps> = ({
   className = '',
   loading = false,
   loadingText,
+  userRank = 1
 }) => {
   const { user, logout, isAuthenticated } = useAuth();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -47,6 +49,7 @@ const Layout: React.FC<LayoutProps> = ({
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -55,7 +58,7 @@ const Layout: React.FC<LayoutProps> = ({
 
       {/* Background */}
       <div className="fixed inset-0 z-0">
-        <Starfield />
+        <StarfieldWrapper userRank={userRank} />
       </div>
 
       {/* Main Content */}

@@ -6,8 +6,9 @@ import { useAuth } from '../../contexts/AuthContext';
 import Link from 'next/link';
 import { FiPlus, FiPackage, FiShoppingBag, FiDownload, FiStar, FiEye, FiEdit, FiTrash2, FiAlertCircle, FiInbox } from 'react-icons/fi';
 import { ListingStatus, ListingCategory } from '../../types/listing';
-import ThematicGlyph, { GlyphEffect, GlyphTier } from '../../components/ThematicGlyph';
+import ItemGlyph from '../../components/ItemGlyph';
 import { GlyphImageKey } from '../../lib/glyphs';
+import Image from 'next/image';
 
 interface MyListing {
   id: string;
@@ -21,10 +22,13 @@ interface MyListing {
   created_at: string;
   is_visible: boolean;
   owner_email: string;
+  creator_id: string;
+  is_beer?: boolean;
   glyph?: GlyphImageKey;
-  tier?: GlyphTier;
+  tier?: 'basic' | 'enhanced' | 'premium' | 'mythic';
   rank?: 'basic' | 'enhanced' | 'premium' | 'mythic';
   galatean?: boolean;
+  thumbnail_url?: string;
 }
 
 const MyItemsPage = () => {
@@ -66,110 +70,133 @@ const MyItemsPage = () => {
             throw new Error('Failed to fetch listings');
           }
         } catch (apiError) {
-          console.log('API fetch failed, using fallback data');
+          console.log('API fetch failed, checking localStorage');
           
-          // If API fails, use fallback data
-          if (user) {
-            // If we have a user, create some mock listings for them
-            data = [
-              {
-                id: 'consciousness-mapper',
-                title: 'Consciousness Mapper',
-                description: 'Map and analyze consciousness patterns',
-                category: 'Analysis',
-                price: 499.00,
-                downloads: 567,
-                status: 'active',
-                quantum_score: 185,
-                created_at: new Date().toISOString(),
-                is_visible: true,
-                owner_email: user.email,
-                glyph: 'quantum-seal',
-                tier: 'item' as GlyphTier,
-                rank: 'mythic',
-                galatean: true
-              },
-              {
-                id: 'quantum-state-optimizer',
-                title: 'Quantum State Optimizer',
-                description: 'Optimize quantum states for maximum efficiency',
-                category: 'Optimization',
-                price: 299.00,
-                downloads: 789,
-                status: 'active',
-                quantum_score: 142,
-                created_at: new Date().toISOString(),
-                is_visible: true,
-                owner_email: user.email,
-                glyph: 'aegis',
-                tier: 'item' as GlyphTier,
-                rank: 'premium'
-              },
-              {
-                id: 'beer4',
-                title: 'Beer4',
-                description: '4th beer!',
-                category: 'Tools & Utilities',
-                price: 1.00,
-                downloads: 0,
-                status: 'testing',
-                quantum_score: 42,
-                created_at: new Date().toISOString(),
-                is_visible: true,
-                owner_email: user.email,
-                glyph: 'wayfinder',
-                tier: 'item' as GlyphTier,
-                rank: 'basic'
-              },
-              {
-                id: 'beer5',
-                title: 'Beer5',
-                description: 'More beer',
-                category: 'Tools & Utilities',
-                price: 1.00,
-                downloads: 0,
-                status: 'testing',
-                quantum_score: 42,
-                created_at: new Date().toISOString(),
-                is_visible: true,
-                owner_email: user.email,
-                glyph: 'triune',
-                tier: 'item' as GlyphTier,
-                rank: 'basic'
-              },
-              {
-                id: 'beer6',
-                title: 'Beer',
-                description: 'Beer6',
-                category: 'Tools & Utilities',
-                price: 0.00,
-                downloads: 0,
-                status: 'active',
-                quantum_score: 42,
-                created_at: new Date().toISOString(),
-                is_visible: true,
-                owner_email: user.email,
-                glyph: 'seidr',
-                tier: 'item' as GlyphTier,
-                rank: 'basic'
-              },
-              {
-                id: 'beer7',
-                title: 'Beer7',
-                description: 'another beer, we ride!',
-                category: 'Education',
-                price: 1.00,
-                downloads: 0,
-                status: 'active',
-                quantum_score: 42,
-                created_at: new Date().toISOString(),
-                is_visible: true,
-                owner_email: user.email,
-                glyph: 'lion',
-                tier: 'item' as GlyphTier,
-                rank: 'basic'
-              }
-            ];
+          // Try to get existing marketplace data first
+          const marketplaceData = localStorage.getItem('marketplace_items');
+          const userEmail = user?.email;
+          
+          if (marketplaceData && userEmail) {
+            const allItems = JSON.parse(marketplaceData);
+            data = allItems.filter((item: MyListing) => item.owner_email === userEmail);
+            console.log('Using marketplace data:', data);
+          }
+          
+          // If no marketplace data, use fallback mock data
+          if (!data || data.length === 0) {
+            console.log('No marketplace data, using fallback data');
+            if (user) {
+              data = [
+                {
+                  id: 'consciousness-mapper',
+                  title: 'Consciousness Mapper',
+                  description: 'Map and analyze consciousness patterns',
+                  category: 'Analysis',
+                  price: 499.00,
+                  downloads: 567,
+                  status: 'active',
+                  quantum_score: 185,
+                  created_at: new Date().toISOString(),
+                  is_visible: true,
+                  owner_email: user.email,
+                  creator_id: user.id || '1',
+                  is_beer: false,
+                  tier: 'item' as 'basic' | 'enhanced' | 'premium' | 'mythic',
+                  rank: 'mythic',
+                  galatean: true
+                },
+                {
+                  id: 'quantum-state-optimizer',
+                  title: 'Quantum State Optimizer',
+                  description: 'Optimize quantum states for maximum efficiency',
+                  category: 'Optimization',
+                  price: 299.00,
+                  downloads: 789,
+                  status: 'active',
+                  quantum_score: 142,
+                  created_at: new Date().toISOString(),
+                  is_visible: true,
+                  owner_email: user.email,
+                  creator_id: user.id || '1',
+                  is_beer: false,
+                  glyph: 'aegis',
+                  tier: 'item' as 'basic' | 'enhanced' | 'premium' | 'mythic',
+                  rank: 'premium'
+                },
+                {
+                  id: 'beer4',
+                  title: 'Beer4',
+                  description: '4th beer!',
+                  category: 'Tools & Utilities',
+                  price: 1.00,
+                  downloads: 0,
+                  status: 'testing',
+                  quantum_score: 42,
+                  created_at: new Date().toISOString(),
+                  is_visible: true,
+                  owner_email: user.email,
+                  creator_id: user.id || '1',
+                  is_beer: true,
+                  glyph: 'wayfinder',
+                  tier: 'item' as 'basic' | 'enhanced' | 'premium' | 'mythic',
+                  rank: 'basic'
+                },
+                {
+                  id: 'beer5',
+                  title: 'Beer5',
+                  description: 'More beer',
+                  category: 'Tools & Utilities',
+                  price: 1.00,
+                  downloads: 0,
+                  status: 'testing',
+                  quantum_score: 42,
+                  created_at: new Date().toISOString(),
+                  is_visible: true,
+                  owner_email: user.email,
+                  creator_id: user.id || '1',
+                  is_beer: true,
+                  glyph: 'triune',
+                  tier: 'item' as 'basic' | 'enhanced' | 'premium' | 'mythic',
+                  rank: 'basic'
+                },
+                {
+                  id: 'beer6',
+                  title: 'Beer',
+                  description: 'Beer6',
+                  category: 'Tools & Utilities',
+                  price: 0.00,
+                  downloads: 0,
+                  status: 'active',
+                  quantum_score: 42,
+                  created_at: new Date().toISOString(),
+                  is_visible: true,
+                  owner_email: user.email,
+                  creator_id: user.id || '1',
+                  is_beer: true,
+                  glyph: 'seidr',
+                  tier: 'item' as 'basic' | 'enhanced' | 'premium' | 'mythic',
+                  rank: 'basic'
+                },
+                {
+                  id: 'beer7',
+                  title: 'Beer7',
+                  description: 'another beer, we ride!',
+                  category: 'Education',
+                  price: 1.00,
+                  downloads: 0,
+                  status: 'active',
+                  quantum_score: 42,
+                  created_at: new Date().toISOString(),
+                  is_visible: true,
+                  owner_email: user.email,
+                  creator_id: user.id || '1',
+                  is_beer: true,
+                  glyph: 'lion',
+                  tier: 'item' as 'basic' | 'enhanced' | 'premium' | 'mythic',
+                  rank: 'basic'
+                }
+              ];
+            }
           }
         }
         
@@ -261,13 +288,6 @@ const MyItemsPage = () => {
     }
   };
 
-  const getItemGlyphEffect = (item: MyListing): GlyphEffect => {
-    if (item.galatean) return 'quantum';
-    if (item.status === ListingStatus.ACTIVE) return 'glow';
-    if (item.status === ListingStatus.TESTING) return 'pulse';
-    return 'none';
-  };
-
   const getItemRank = (item: MyListing): 'basic' | 'enhanced' | 'premium' | 'mythic' => {
     if (item.rank) return item.rank;
     if (item.quantum_score >= 200) return 'mythic';
@@ -343,22 +363,22 @@ const MyItemsPage = () => {
               <table className="min-w-full divide-y divide-gray-700">
                 <thead className="bg-gray-900/50">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-2/5">
                       Item
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-24">
                       Status
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-32">
                       Category
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-24">
                       Price
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-24">
                       Downloads
                     </th>
-                    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider w-32">
                       Actions
                     </th>
                   </tr>
@@ -368,20 +388,22 @@ const MyItemsPage = () => {
                     <tr key={item.id} className="hover:bg-gray-700/30 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0">
-                            <ThematicGlyph
-                              tier="item"
-                              glyph={item.glyph}
-                              effect={getItemGlyphEffect(item)}
-                              rank={getItemRank(item)}
+                          <div className="flex-shrink-0 relative z-10">
+                            <ItemGlyph
+                              itemId={item.id}
+                              itemName={item.title}
+                              creatorId={item.creator_id || item.owner_email}
                               size={40}
+                              complexity={item.quantum_score ? item.quantum_score / 100 : 0.6}
+                              color={item.is_beer ? '#f59e0b' : '#6366f1'}
+                              secondaryColor={item.is_beer ? '#fbbf24' : '#a5b4fc'}
+                              animate={true}
                               className="opacity-90 hover:opacity-100 transition-opacity"
-                              isGalatea={item.galatean}
                             />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <div className="text-sm font-medium text-gray-200 truncate">{item.title}</div>
-                            <div className="text-sm text-gray-400 truncate">{item.description}</div>
+                            <div className="text-sm font-medium text-gray-200 truncate max-w-md">{item.title}</div>
+                            <div className="text-sm text-gray-400 truncate max-w-md">{item.description}</div>
                           </div>
                         </div>
                       </td>
@@ -401,7 +423,7 @@ const MyItemsPage = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                         {item.downloads}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium sticky right-0 bg-gray-800/50">
                         <div className="flex items-center justify-end space-x-2">
                           <button
                             onClick={() => handleEditItem(item.id)}
