@@ -1,0 +1,314 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 13, 17, 23;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+}
+
+/* Quantum Glyph Animations */
+@keyframes quantum-superposition {
+  0%, 100% {
+    transform: scale(1) rotate(0deg) translateZ(0);
+    filter: hue-rotate(0deg) blur(0px) brightness(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: scale(1.1) rotate(180deg) translateZ(10px);
+    filter: hue-rotate(90deg) blur(2px) brightness(1.5);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.9) rotate(360deg) translateZ(-10px);
+    filter: hue-rotate(180deg) blur(4px) brightness(0.8);
+    opacity: 0.5;
+  }
+  75% {
+    transform: scale(1.1) rotate(180deg) translateZ(10px);
+    filter: hue-rotate(270deg) blur(2px) brightness(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes quantum-entangle {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    filter: hue-rotate(180deg) brightness(1.5);
+  }
+  100% {
+    filter: hue-rotate(360deg) brightness(1);
+  }
+}
+
+@keyframes rank-transition {
+  0% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  50% {
+    transform: scale(1.2);
+    filter: blur(4px) brightness(1.5);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+.animate-quantum {
+  animation: quantum-superposition 3s infinite linear;
+}
+
+.animate-entangled {
+  animation: quantum-entangle 2s infinite linear;
+}
+
+.animate-rank-transition {
+  animation: rank-transition 1s ease-in-out;
+}
+
+/* Particle Effects */
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) translateX(var(--particle-x));
+    opacity: 0;
+  }
+}
+
+.animate-particles {
+  position: relative;
+}
+
+.animate-particles::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--particle-color) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: particle-float 1.5s ease-out infinite;
+}
+
+/* User Rank Animations */
+.animate-user-basic {
+  filter: brightness(1);
+  transition: filter 0.3s ease;
+}
+
+.animate-user-enhanced {
+  filter: brightness(1.2) drop-shadow(0 0 4px currentColor);
+  transition: filter 0.3s ease;
+}
+
+.animate-user-premium {
+  filter: brightness(1.4) drop-shadow(0 0 8px currentColor);
+  animation: premium-pulse 2s infinite ease-in-out;
+}
+
+.animate-user-mythic {
+  filter: brightness(1.6) drop-shadow(0 0 12px currentColor);
+  animation: mythic-aura 3s infinite ease-in-out;
+}
+
+@keyframes premium-pulse {
+  0%, 100% {
+    filter: brightness(1.4) drop-shadow(0 0 8px currentColor);
+  }
+  50% {
+    filter: brightness(1.6) drop-shadow(0 0 12px currentColor);
+  }
+}
+
+@keyframes mythic-aura {
+  0%, 100% {
+    filter: brightness(1.6) drop-shadow(0 0 12px currentColor) hue-rotate(0deg);
+  }
+  50% {
+    filter: brightness(1.8) drop-shadow(0 0 16px currentColor) hue-rotate(180deg);
+  }
+}
+
+/* Enhanced Quantum Glyph Animations */
+@keyframes quantum-interference {
+  0%, 100% {
+    clip-path: circle(50% at 50% 50%);
+    filter: hue-rotate(0deg) contrast(1) brightness(1);
+  }
+  25% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    filter: hue-rotate(90deg) contrast(1.5) brightness(1.2);
+  }
+  50% {
+    clip-path: circle(40% at 60% 40%);
+    filter: hue-rotate(180deg) contrast(2) brightness(0.8);
+  }
+  75% {
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    filter: hue-rotate(270deg) contrast(1.5) brightness(1.2);
+  }
+}
+
+@keyframes quantum-tunneling {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+    filter: blur(0px) brightness(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(20px) scale(0.1);
+    filter: blur(10px) brightness(2);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(-40px) scale(0.1);
+    filter: blur(10px) brightness(2);
+    opacity: 0.2;
+  }
+  75% {
+    transform: translateX(20px) scale(0.1);
+    filter: blur(10px) brightness(2);
+    opacity: 0.2;
+  }
+}
+
+/* Enhanced Particle System */
+.particle {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@keyframes particle-quantum {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-wave {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-40px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Entanglement Effects */
+.entangled-pair {
+  position: relative;
+}
+
+.entangled-pair::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 25%, 
+    rgba(255, 255, 255, 0.5) 50%, 
+    rgba(255, 255, 255, 0.2) 75%, 
+    transparent 100%
+  );
+  transform-origin: left center;
+  animation: entanglement-beam 2s infinite linear;
+}
+
+@keyframes entanglement-beam {
+  0% {
+    transform: translateX(-50%) scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scaleX(0);
+    opacity: 0;
+  }
+}
+
+/* Enhanced State Transitions */
+.state-transition {
+  animation: state-shift 0.5s ease-in-out;
+}
+
+@keyframes state-shift {
+  0% {
+    transform: perspective(400px) rotateY(0);
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    transform: perspective(400px) rotateY(180deg);
+    filter: brightness(2) saturate(2);
+  }
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+    filter: brightness(1) saturate(1);
+  }
+}
+
+/* Quantum Field Effects */
+.quantum-field {
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-field::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    transparent 100%
+  );
+  animation: quantum-field-rotate 10s infinite linear;
+}
+
+@keyframes quantum-field-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

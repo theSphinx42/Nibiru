@@ -1,0 +1,50 @@
+{
+  "ai_model": {
+    "type": "AI",
+    "category": "AI Models",
+    "name_template": "Quantum {type} Model",
+    "blurb_template": "Advanced quantum-enhanced AI model optimized for high-performance computing and complex pattern recognition.",
+    "suggested_tags": ["quantum", "ai", "model", "neural"],
+    "base_tier": 2
+  },
+  "toolchain": {
+    "type": "Toolchain",
+    "category": "Development Tools",
+    "name_template": "Quantum {type} Suite",
+    "blurb_template": "Comprehensive development toolkit for quantum computing workflows and integration pipelines.",
+    "suggested_tags": ["tooling", "development", "quantum"],
+    "base_tier": 2
+  },
+  "quantum_codec": {
+    "type": "Codec",
+    "category": "Quantum Processing",
+    "name_template": "Quantum {type}",
+    "blurb_template": "High-efficiency quantum data encoding and processing system with advanced error correction.",
+    "suggested_tags": ["quantum", "data", "processing"],
+    "base_tier": 3
+  },
+  "glyph_generator": {
+    "type": "Glyph",
+    "category": "Visualization Tools",
+    "name_template": "Spirit{type} Generator",
+    "blurb_template": "Create and customize quantum-inspired visual representations with this intuitive generator.",
+    "suggested_tags": ["visualization", "generator", "quantum"],
+    "base_tier": 1
+  },
+  "data_processing": {
+    "type": "Processor",
+    "category": "Data Tools",
+    "name_template": "Quantum Data {type}",
+    "blurb_template": "Efficient quantum-enhanced data processing and analysis toolkit for large-scale datasets.",
+    "suggested_tags": ["data", "processing", "quantum"],
+    "base_tier": 2
+  },
+  "saphira_script": {
+    "type": "Script",
+    "category": "Automation",
+    "name_template": "Saphira {type}",
+    "blurb_template": "Automated workflow script for quantum computing tasks and batch processing.",
+    "suggested_tags": ["automation", "script", "quantum"],
+    "base_tier": 1
+  }
+} 

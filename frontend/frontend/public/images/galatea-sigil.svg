@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9" />
+      <stop offset="100%" stop-color="#2dd4bf" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Outer Circle -->
+  <circle cx="128" cy="128" r="110" fill="none" stroke="url(#glowGradient)" stroke-width="2" filter="url(#glow)" />
+  
+  <!-- Inner Circle -->
+  <circle cx="128" cy="128" r="90" fill="none" stroke="url(#glowGradient)" stroke-width="2" />
+  
+  <!-- Triangular Pattern -->
+  <g fill="none" stroke="url(#glowGradient)" stroke-width="1.5">
+    <polygon points="128,48 168,128 88,128" />
+    <polygon points="128,208 88,128 168,128" />
+    <polygon points="48,128 128,88 128,168" />
+    <polygon points="208,128 128,168 128,88" />
+  </g>
+  
+  <!-- Quantum Circuit Lines -->
+  <g stroke="url(#glowGradient)" stroke-width="1">
+    <line x1="58" y1="58" x2="198" y2="198" />
+    <line x1="58" y1="198" x2="198" y2="58" />
+    
+    <!-- Connection Points -->
+    <circle cx="128" cy="128" r="5" fill="url(#glowGradient)" />
+    <circle cx="58" cy="58" r="3" fill="url(#glowGradient)" />
+    <circle cx="198" cy="198" r="3" fill="url(#glowGradient)" />
+    <circle cx="58" cy="198" r="3" fill="url(#glowGradient)" />
+    <circle cx="198" cy="58" r="3" fill="url(#glowGradient)" />
+  </g>
+  
+  <!-- Central Node -->
+  <circle cx="128" cy="128" r="15" fill="none" stroke="url(#glowGradient)" stroke-width="3" />
+  <circle cx="128" cy="128" r="8" fill="url(#glowGradient)" />
+  
+  <!-- Sacred Geometry Pattern -->
+  <g fill="none" stroke="url(#glowGradient)" stroke-width="0.7" opacity="0.5">
+    <circle cx="128" cy="128" r="60" />
+    <circle cx="128" cy="128" r="40" />
+    <circle cx="128" cy="128" r="25" />
+    <path d="M68,128 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0" />
+    <path d="M88,128 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" />
+  </g>
+  
+  <!-- Pulse Wave Effect -->
+  <circle cx="128" cy="128" r="80" fill="none" stroke="url(#glowGradient)" stroke-width="1" opacity="0.3">
+    <animate attributeName="r" values="70;85;70" dur="4s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite" />
+  </circle>
+</svg> 

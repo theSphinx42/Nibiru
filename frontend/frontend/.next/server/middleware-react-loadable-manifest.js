@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"listings\\\\[id].tsx -> ../../utils/mockData\":{\"id\":\"listings\\\\[id].tsx -> ../../utils/mockData\",\"files\":[]}}"
